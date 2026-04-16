@@ -97,7 +97,7 @@ const highlights = [
 const stats = [
   { value: "3", label: "South Florida locations" },
   { value: "12+", label: "Women’s health services" },
-  { value: "Integrative", label: "Patient-first approach" },
+  { value: "Multiple", label: "Insurances accepted" },
 ];
 
 const locations = [
@@ -149,6 +149,7 @@ const insuranceProviders = [
     src: "/images/insurances/molina-healthcare.webp",
   },
   { name: "Oscar", src: "/images/insurances/oscar.webp" },
+  { name: "No Insurance? Contact Us", src: "/images/insurances/no-insurance.webp" },
 ];
 ---
 
@@ -156,72 +157,68 @@ const insuranceProviders = [
   title="Carlos Rodriguez Ortiz MD, PA | Obstetrics & Gynecology"
   description="Compassionate obstetrics and gynecology care in Miami, Hialeah, and Kendall."
 >
-  <section class="relative overflow-hidden pt-8 lg:pt-10">
-    <div class="container-shell py-12 lg:py-20">
-      <div class="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-        <div class="relative z-10">
-          <span class="eyebrow-chip">
+  <section class="hero-cinematic pt-8 lg:pt-10">
+    <div class="hero-cinematic__overlay"></div>
+    <div class="hero-pattern"></div>
+
+    <div class="container-shell relative z-10 py-14 lg:py-24">
+      <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <span class="eyebrow-chip text-white border-white/20 bg-white/10">
             Obstetrics &amp; Gynecology in Miami, Hialeah, and Kendall
           </span>
 
           <h1
-            class="mt-6 max-w-3xl font-[var(--font-display)] text-5xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+            class="mt-6 max-w-3xl font-[var(--font-display)] text-5xl font-normal leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl"
           >
-            A calmer, more elevated experience in women’s healthcare.
+            Women’s healthcare with warmth, elegance, and confidence.
           </h1>
 
-          <p class="text-muted mt-6 max-w-2xl text-lg leading-8">
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-white/82">
             Carlos Rodriguez Ortiz MD, PA, and his team provide compassionate
-            obstetrics and gynecology care with a patient-focused approach that
-            blends expertise, warmth, and long-term wellness support.
+            obstetrics and gynecology care through every stage of life with a
+            supportive, patient-first experience.
           </p>
 
           <div class="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href="#contact"
-              class="btn-primary inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
+              class="btn-light inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
             >
               Book an Appointment
             </a>
             <a
               href="#services"
-              class="btn-secondary inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
+              class="btn-outline-light inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
             >
               View Services
             </a>
           </div>
-
-          <div class="mt-10 grid gap-4 sm:grid-cols-3">
-            {
-              stats.map((item) => (
-                <div class="feature-stack">
-                  <p class="feature-kicker">At a glance</p>
-                  <p class="mt-3 font-[var(--font-display)] text-3xl font-semibold leading-none">
-                    {item.value}
-                  </p>
-                  <p class="text-muted mt-3 text-sm leading-6">{item.label}</p>
-                </div>
-              ))
-            }
-          </div>
         </div>
 
-        <div class="relative z-10">
-          <div class="hero-shell">
-            <div class="hero-media-frame">
+        <div class="relative">
+          <div class="hero-side-panel">
+            <div class="hero-side-panel__image">
               <img
-                src="/images/hero-image.webp"
+                src="/images/hero-image-2.webp"
                 alt="Doctor with patient in a women’s health clinic"
-                class="h-[600px] w-full rounded-[calc(var(--radius-xl)-0.65rem)] object-cover"
+                class="h-[540px] w-full rounded-[1.7rem] object-cover"
               />
             </div>
 
-            <div class="hero-note">
-              <p class="eyebrow">Patient-centered care</p>
-              <p class="mt-2 font-[var(--font-display)] text-2xl font-semibold leading-tight">
-                Thoughtful support through prevention, pregnancy, and lifelong
-                wellness.
-              </p>
+            <div class="hero-side-panel__stats">
+              {
+                stats.map((item) => (
+                  <div class="stat-ribbon">
+                    <p class="font-[var(--font-display)] text-3xl font-normal leading-none">
+                      {item.value}
+                    </p>
+                    <p class="mt-2 text-sm text-[rgb(var(--color-text-secondary))]">
+                      {item.label}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -229,13 +226,13 @@ const insuranceProviders = [
     </div>
   </section>
 
-  <section class="container-shell py-6">
-    <div class="location-ribbon grid gap-4 rounded-[var(--radius-lg)] p-4 md:grid-cols-3 md:p-5">
+  <section class="container-shell -mt-10 relative z-20">
+    <div class="floating-location-band">
       {
         locations.map((location) => (
-          <div class="ribbon-card">
+          <div class="floating-location-band__item">
             <p class="eyebrow">Now serving</p>
-            <p class="mt-2 font-[var(--font-display)] text-2xl font-semibold">
+            <p class="mt-2 font-[var(--font-display)] text-2xl font-normal">
               {location.name}
             </p>
           </div>
@@ -244,56 +241,55 @@ const insuranceProviders = [
     </div>
   </section>
 
-  <section id="about" class="container-shell py-20">
-    <div class="grid items-center gap-14 lg:grid-cols-[0.88fr_1.12fr]">
-      <div>
-        <div class="portrait-panel">
+  <section id="about" class="container-shell py-24">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="stacked-media-layout">
+        <div class="stacked-media-layout__main">
           <img
             src="/images/dr-carlos-ok.webp"
             alt="Dr. Carlos Rodriguez Ortiz"
-            class="h-full w-full rounded-[calc(var(--radius-xl)-0.7rem)] object-cover"
+            class="h-full w-full rounded-[1.8rem] object-cover"
           />
         </div>
 
-        <div class="mt-4 grid grid-cols-3 gap-3">
-          <div class="mini-media-card">
-            <img
-              src="/images/clinic-1.webp"
-              alt="Clinic consultation"
-              class="h-24 w-full rounded-[1rem] object-cover sm:h-28"
-            />
-          </div>
-          <div class="mini-media-card">
-            <img
-              src="/images/clinic-2.webp"
-              alt="Women’s healthcare visit"
-              class="h-24 w-full rounded-[1rem] object-cover sm:h-28"
-            />
-          </div>
-          <div class="mini-media-card">
-            <img
-              src="/images/clinic-3.webp"
-              alt="Patient care in clinic"
-              class="h-24 w-full rounded-[1rem] object-cover sm:h-28"
-            />
-          </div>
+        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--one">
+          <img
+            src="/images/clinic-1.webp"
+            alt="Clinic consultation"
+            class="h-full w-full rounded-[1.3rem] object-cover"
+          />
+        </div>
+
+        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--two">
+          <img
+            src="/images/clinic-2.webp"
+            alt="Women’s healthcare visit"
+            class="h-full w-full rounded-[1.3rem] object-cover"
+          />
+        </div>
+
+        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--three">
+          <img
+            src="/images/clinic-3.webp"
+            alt="Patient care in clinic"
+            class="h-full w-full rounded-[1.3rem] object-cover"
+          />
         </div>
       </div>
 
-      <div>
+      <div class="ornament-panel">
         <p class="eyebrow">About Carlos Rodriguez Ortiz MD, PA</p>
         <h2 class="section-heading mt-4">
           Personalized obstetrics and gynecology care for every stage of life.
         </h2>
 
-        <div class="content-columns mt-7 space-y-4">
+        <div class="mt-6 space-y-4">
           <p class="text-muted text-base leading-8">
-            Carlos Rodriguez Ortiz MD, PA, and his team specialize in
-            obstetrics and gynecology at their offices in Miami and Hialeah,
-            HCA Florida Kendall Regional Hospital. Dr. Rodriguez and the
-            compassionate team take a patient-focused, integrative approach to
-            care, addressing all patient needs in a personal and supportive
-            environment.
+            Carlos Rodriguez Ortiz MD, PA, and his team specialize in obstetrics
+            and gynecology at their offices in Miami and Hialeah, HCA Florida
+            Kendall Regional Hospital. Dr. Rodriguez and the compassionate team
+            take a patient-focused, integrative approach to care, addressing all
+            patient needs in a personal and supportive environment.
           </p>
 
           <p class="text-muted text-base leading-8">
@@ -305,52 +301,44 @@ const insuranceProviders = [
           <p class="text-muted text-base leading-8">
             The team manages well-woman exams, birth control, and Pap smears.
             They offer high-quality care for complex health issues as well, such
-            as abnormal bleeding, ovarian cysts, and endometriosis.
+            as abnormal bleeding, ovarian cysts, and endometriosis. Patients can
+            also take advantage of the family planning and infertility services
+            available at the practice.
           </p>
 
           <p class="text-muted text-base leading-8">
-            Through caring and attentive processes, they create clear plans of
-            action to help patients achieve their goals and feel confident in
-            every decision.
-          </p>
-
-          <p class="text-muted text-base leading-8">
-            For personalized obstetrics and gynecology care, call Carlos
-            Rodriguez Ortiz MD, PA, or schedule an appointment online today.
+            The team’s mission is to deliver unparalleled patient care through a
+            caring and attentive process that helps patients feel informed,
+            supported, and confident.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="mission" class="container-shell py-20">
-    <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
-      <div class="mission-banner">
-        <div class="mission-banner__inner">
-          <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
-            Our mission
-          </p>
-          <h2 class="mt-4 font-[var(--font-display)] text-3xl font-semibold text-white sm:text-4xl">
-            Unparalleled patient care with a caring, attentive approach.
-          </h2>
-          <p class="mt-5 max-w-2xl text-base leading-8 text-white/88">
-            Our mission is to deliver compassionate, informed, and personalized
-            care for every woman we serve. We listen closely, guide clearly, and
-            create care plans that support health, confidence, and comfort at
-            every stage of life.
-          </p>
-        </div>
+  <section id="mission" class="immersive-banner-section">
+    <div class="immersive-banner-section__overlay"></div>
+    <div class="container-shell relative z-10 py-24">
+      <div class="max-w-4xl">
+        <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
+          Our mission
+        </p>
+        <h2 class="mt-4 font-[var(--font-display)] text-4xl font-normal leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+          Unparalleled patient care in a supportive and attentive environment.
+        </h2>
+        <p class="mt-6 max-w-3xl text-base leading-8 text-white/82">
+          We take time to understand each patient’s unique concerns, create
+          personalized plans of action, and guide every step with clarity,
+          compassion, and high-quality care.
+        </p>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
         {
           highlights.map((item) => (
-            <div class="info-panel">
-              <div class="info-panel__bar"></div>
-              <h3 class="font-[var(--font-display)] text-xl font-semibold">
-                {item.title}
-              </h3>
-              <p class="text-muted mt-2 text-sm leading-7">
+            <div class="glass-feature-card">
+              <p class="glass-feature-card__title">{item.title}</p>
+              <p class="mt-3 text-sm leading-7 text-white/78">
                 {item.description}
               </p>
             </div>
@@ -360,59 +348,57 @@ const insuranceProviders = [
     </div>
   </section>
 
-  <section id="services" class="py-20">
-    <div class="container-shell">
-      <div class="max-w-2xl">
-        <p class="eyebrow">Services</p>
-        <h2 class="section-heading mt-4">
-          Thoughtful women’s health services with a stronger editorial layout.
-        </h2>
-        <p class="text-muted mt-4 text-base leading-8">
-          Preventive, obstetric, and gynecologic care presented in a more
-          refined and structured way.
-        </p>
-      </div>
+  <section id="services" class="container-shell py-24">
+    <div >
+      <p class="eyebrow">Services</p>
+      <h2 class="section-heading mt-4">
+        Thoughtful women’s health services with a more expressive presentation.
+      </h2>
+      <p class="text-muted mt-4 text-base leading-8">
+        We provide attentive obstetrics and gynecology care for a wide range of
+		concerns, from routine exams to complex health issues, with a more
+		elevated and welcoming experience. Explore our services below, and contact us if you have any questions or want to learn more about how we can support your care.
+      </p>
+    </div>
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          services.map((service) => (
-            <article class="service-panel">
-              <div class="service-panel__image-wrap">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  class="h-56 w-full rounded-[1.35rem] object-cover transition duration-500 hover:scale-[1.04]"
-                />
-              </div>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {
+        services.map((service) => (
+          <article class="immersive-service-card transform hover:scale-[1.02] transition duration-300 hover:cursor-pointer">
+            <div class="immersive-service-card__image">
+              <img
+                src={service.image}
+                alt={service.title}
+                class="h-full w-full object-cover transition duration-700 hover:scale-[1.05]"
+              />
+              <div class="immersive-service-card__overlay"></div>
+            </div>
 
-              <div class="service-panel__content">
-                <p class="service-panel__eyebrow">Women’s health</p>
-                <h3 class="mt-3 font-[var(--font-display)] text-2xl font-semibold leading-tight">
-                  {service.title}
-                </h3>
+            <div class="immersive-service-card__content">
+              <h3 class="mt-3 font-[var(--font-display)] text-3xl font-normal leading-tight text-white">
+                {service.title}
+              </h3>
+              <p class="mt-3 text-sm leading-7 text-white/82">
+                {service.description}
+              </p>
 
-                <p class="text-muted mt-3 text-sm leading-7">
-                  {service.description}
-                </p>
-
-                <a
-                  href="#contact"
-                  class="mt-6 inline-flex text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]"
-                >
-                  Schedule now →
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+              <a
+                href="#contact"
+                class="mt-6 inline-flex text-sm font-bold uppercase tracking-[0.14em] text-white hover:text-[rgb(var(--color-accent-contrast))]"
+              >
+                Schedule now →
+              </a>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
-  <section id="insurances" class="container-shell py-20">
-    <div class="surface-panel radius-brand-xl p-8 lg:p-12">
-      <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
-        <div>
+  <section id="insurances" class="insurance-showcase-section">
+    <div class="container-shell py-24">
+      <div class="showcase-panel">
+        <div class="showcase-panel__intro">
           <p class="eyebrow">Insurances</p>
           <h2 class="section-heading mt-4">
             We accept most insurance providers.
@@ -423,10 +409,10 @@ const insuranceProviders = [
           </p>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        <div class="showcase-panel__grid">
           {
             insuranceProviders.map((provider) => (
-              <div class="insurance-tile">
+              <div class="insurance-badge">
                 <img
                   src={provider.src}
                   alt={provider.name}
@@ -440,104 +426,101 @@ const insuranceProviders = [
     </div>
   </section>
 
-  <section id="locations" class="container-shell py-20">
-    <div class="surface-panel radius-brand-xl overflow-hidden p-8 lg:p-12">
-      <div class="max-w-3xl">
-        <p class="eyebrow">Locations &amp; contact</p>
-        <h2 class="section-heading mt-4">Convenient care, close to home.</h2>
-        <p class="text-muted mt-5 text-base leading-8">
-          Visit our South Florida offices for attentive obstetric and
-          gynecologic care in a calm, welcoming setting.
-        </p>
-      </div>
+  <section id="locations" class="container-shell py-24">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Locations &amp; contact</p>
+      <h2 class="section-heading mt-4">Convenient care, close to home.</h2>
+      <p class="text-muted mt-5 text-base leading-8">
+        Visit our South Florida offices for attentive obstetric and gynecologic
+        care in a calm, welcoming setting.
+      </p>
+    </div>
 
-      <div class="mt-10 grid gap-6 lg:grid-cols-3">
-        {
-          locations.map((location) => (
-            <div class="location-panel">
-              <div class="location-panel__header">
-                <p class="eyebrow">Office location</p>
-                <p class="mt-2 font-[var(--font-display)] text-2xl font-semibold">
-                  {location.name}
-                </p>
-                <p class="text-muted mt-3 text-sm leading-7">
-                  {location.address} <br /> {location.cityState} {location.zipCode}
-                </p>
-
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address} ${location.cityState} ${location.zipCode}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="mt-5 inline-flex text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]"
-                >
-                  Get directions →
-                </a>
-              </div>
-
-              <div class="location-panel__map">
-                <iframe
-                  src={location.mapEmbed}
-                  title={`Map of ${location.name}`}
-                  class="h-[250px] w-full"
-                  style="border:0;"
-                  loading="lazy"
-                  allowfullscreen
-                  referrerpolicy="no-referrer-when-downgrade"
-                />
-              </div>
+    <div class="mt-12 grid gap-8 lg:grid-cols-3">
+      {
+        locations.map((location) => (
+          <div class="story-location-card">
+            <div class="story-location-card__map">
+              <iframe
+                src={location.mapEmbed}
+                title={`Map of ${location.name}`}
+                class="h-[260px] w-full"
+                style="border:0;"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              />
             </div>
-          ))
-        }
-      </div>
 
-      <div id="contact" class="contact-band mt-10">
-        <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
-              Request an appointment
-            </p>
-            <h3 class="mt-4 font-[var(--font-display)] text-3xl font-semibold text-white">
-              Start your visit with confidence.
-            </h3>
-            <p class="mt-4 text-sm leading-7 text-white/84">
-              Replace this form with your scheduling tool, patient intake flow,
-              or embedded booking widget.
-            </p>
+            <div class="story-location-card__body">
+              <p class="eyebrow">Office location</p>
+              <p class="mt-2 font-[var(--font-display)] text-2xl font-normal">
+                {location.name}
+              </p>
+              <p class="text-muted mt-3 text-sm leading-7">
+                {location.address} <br /> {location.cityState} {location.zipCode}
+              </p>
 
-            <div class="mt-8 grid gap-3 text-sm text-white/88">
-              <p><span class="font-bold text-white">Phone:</span> 786-332-2922</p>
-              <p>
-                <span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM
-                – 5:30 PM · Fri 9:00 AM – 2:30 PM
-              </p>
-              <p>
-                <span class="font-bold text-white">Language:</span> Se habla español.
-              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address} ${location.cityState} ${location.zipCode}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-5 inline-flex text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]"
+              >
+                Get directions →
+              </a>
             </div>
           </div>
+        ))
+      }
+    </div>
 
-          <form class="grid gap-4" method="POST" data-netlify="true">
-            <div class="grid gap-4 sm:grid-cols-2">
-              <input type="text" placeholder="Full name" class="contact-input" />
-              <input type="email" placeholder="Email" class="contact-input" />
-            </div>
+    <div id="contact" class="contact-scene mt-12">
+      <div class="contact-scene__overlay"></div>
 
-            <input type="tel" placeholder="Phone" class="contact-input" />
+      <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] relative z-10">
+        <div>
+          <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
+            Request an appointment
+          </p>
+          <h3 class="mt-4 font-[var(--font-display)] text-4xl font-normal text-white">
+            Start your visit with confidence.
+          </h3>
+          <p class="mt-4 text-sm leading-7 text-white/84">
+            Replace this form with your scheduling tool, patient intake flow, or
+            embedded booking widget.
+          </p>
 
-            <textarea
-              rows="5"
-              placeholder="How can we help you?"
-              class="contact-input"
-            ></textarea>
-
-            <button
-              type="submit"
-              class="inline-flex w-fit items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand-dark))] transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
-            >
-              Send Request
-            </button>
-          </form>
+          <div class="mt-8 space-y-3 text-sm text-white/88">
+            <p><span class="font-bold text-white">Phone:</span> 786-332-2922</p>
+            <p>
+              <span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM –
+              5:30 PM · Fri 9:00 AM – 2:30 PM
+            </p>
+            <p>
+              <span class="font-bold text-white">Language:</span> Se habla español.
+            </p>
+          </div>
         </div>
+
+        <form class="contact-form-glass" method="POST" data-netlify="true">
+          <input type="text" placeholder="Full name" class="contact-input" />
+          <div class="grid gap-4 sm:grid-cols-2">
+            <input type="email" placeholder="Email" class="contact-input" />
+            <input type="tel" placeholder="Phone" class="contact-input" />
+          </div>
+          <textarea
+            rows="5"
+            placeholder="How can we help you?"
+            class="contact-input"
+          ></textarea>
+          <button
+            type="submit"
+            class="inline-flex w-fit items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand-dark))] transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
+          >
+            Send Request
+          </button>
+        </form>
       </div>
     </div>
   </section>

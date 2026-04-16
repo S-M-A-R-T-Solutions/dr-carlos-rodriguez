@@ -23,12 +23,12 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f8fc" />
+    <meta name="theme-color" content="#edf5fc" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -51,7 +51,7 @@ const {
           if (metaTheme) {
             metaTheme.setAttribute(
               "content",
-              theme === "dark" ? "#08131c" : "#f4f8fc",
+              theme === "dark" ? "#071723" : "#edf5fc",
             );
           }
         };
@@ -94,9 +94,7 @@ const {
     </a>
 
     <div class="relative min-h-screen overflow-x-clip bg-[rgb(var(--color-bg))]">
-      <div
-        class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem] hero-glow"
-      ></div>
+      <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[42rem] hero-glow"></div>
 
       <Header />
 
