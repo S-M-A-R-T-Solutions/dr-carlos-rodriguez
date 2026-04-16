@@ -104,24 +104,24 @@ const locations = [
   {
     name: "Miami",
     address: "3683 S Miami Ave., Suite 400",
-	cityState: "Miami, FL",
-	zipCode: "33133",
+    cityState: "Miami, FL",
+    zipCode: "33133",
     mapEmbed:
       "https://www.google.com/maps?q=3683+S+Miami+Ave+Suite+400+Miami+FL+33133&output=embed",
   },
   {
     name: "Hialeah",
     address: "705 E 26th St.",
-	cityState: "Hialeah, FL",
-	zipCode: "33013",
+    cityState: "Hialeah, FL",
+    zipCode: "33013",
     mapEmbed:
       "https://www.google.com/maps?q=705+E+26th+St+Hialeah+FL+33013&output=embed",
   },
   {
     name: "Kendall Regional Hospital",
     address: "11760 Bird Rd, Suite 734",
-	cityState: "Miami, FL",
-	zipCode: "33175",
+    cityState: "Miami, FL",
+    zipCode: "33175",
     mapEmbed:
       "https://www.google.com/maps?q=11760+Bird+Rd+Suite+734+Miami+FL+33175&output=embed",
   },
@@ -163,6 +163,10 @@ const insuranceProviders = [
   {
     name: "Oscar",
     src: "/images/insurances/oscar.webp",
+  },
+  {
+    name: "No Insurance? Contact Us",
+    src: "/images/insurances/no-insurance.webp",
   },
 ];
 ---
@@ -235,7 +239,7 @@ const insuranceProviders = [
           <img
             src="/images/hero-image.webp"
             alt="Doctor with patient in a women’s health clinic"
-            class="h-[560px] w-full rounded-[calc(var(--radius-xl)-0.5rem)] object-cover"
+            class="h-[560px] w-full rounded-[calc(var(--radius-xl)-0.5rem)] object-cover transform transition duration-500 hover:scale-[1.02]"
           />
           <div
             class="glass-surface absolute inset-x-0 bottom-0 m-6 rounded-[var(--radius-md)] border border-white/40 p-5 dark:border-white/10"
@@ -488,9 +492,12 @@ const insuranceProviders = [
               <div class="flex flex-row w-[33%] surface-panel overflow-hidden rounded-[var(--radius-md)]">
                 <div class="flex flex-col lg:flex-col">
                   <div class="p-3 lg:p-6">
-                    <p class="text-xl font-extrabold">{location.name} <br> Location</p>
+                    <p class="text-xl font-extrabold">
+                      {location.name} <br /> Location
+                    </p>
                     <p class="text-muted mt-2 text-sm leading-7">
-                      {location.address} <br> {location.cityState} {location.zipCode}
+                      {location.address} <br /> {location.cityState}{" "}
+                      {location.zipCode}
                     </p>
 
                     <a
@@ -529,7 +536,9 @@ const insuranceProviders = [
           >
             Request an appointment
           </p>
-          <h3 class="mt-4 text-white font-[var(--font-display)] text-2xl font-extrabold">
+          <h3
+            class="mt-4 text-white font-[var(--font-display)] text-2xl font-extrabold"
+          >
             Start your visit with confidence.
           </h3>
           <p class="mt-4 text-sm leading-7 text-white/85">
@@ -537,7 +546,7 @@ const insuranceProviders = [
             embedded booking widget.
           </p>
 
-          <form class="mt-8 grid gap-4">
+          <form class="mt-8 grid gap-4" method="POST" data-netlify="true">
             <input
               type="text"
               placeholder="Full name"
