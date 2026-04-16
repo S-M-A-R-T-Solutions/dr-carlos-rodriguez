@@ -6,17 +6,10 @@ const navLinks = [
   { href: "#locations", label: "Locations" },
   { href: "#contact", label: "Contact" },
 ];
-
-const pathname = Astro.url.pathname;
-
-const isActive = (href: string) => {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
-};
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-black/5 bg-[rgb(var(--color-surface))/0.92] backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-[rgb(var(--color-surface))/0.82]"
+  class="sticky top-0 z-50 border-b border-[rgb(var(--color-border))/0.14] bg-[rgb(var(--color-surface))/0.82] backdrop-blur-2xl transition-colors duration-300"
 >
   <div class="container-shell flex items-center justify-between gap-4 py-4">
     <a
@@ -28,12 +21,12 @@ const isActive = (href: string) => {
 
       <span class="flex flex-col leading-none">
         <span
-          class="font-[var(--font-display)] text-lg font-extrabold tracking-tight text-[rgb(var(--color-text))]"
+          class="font-[var(--font-display)] text-xl font-normal tracking-tight text-[rgb(var(--color-text))]"
         >
           Carlos Rodriguez Ortiz MD, PA
         </span>
         <span
-          class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-[rgb(var(--color-text-secondary))]"
+          class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--color-text-secondary))]"
         >
           Obstetrics & Gynecology
         </span>
@@ -41,34 +34,24 @@ const isActive = (href: string) => {
     </a>
 
     <nav
-      class="hidden items-center gap-1 rounded-full border border-black/8 bg-[rgb(var(--color-surface))] px-2 py-2 shadow-soft lg:flex dark:border-white/10 dark:bg-white/5 dark:shadow-none"
+      class="hidden items-center gap-1 rounded-full border border-[rgb(var(--color-border))/0.14] bg-[rgb(var(--color-surface))] px-2 py-2 shadow-soft lg:flex"
     >
       {
-        navLinks.map((link) => {
-          const active = isActive(link.href);
-
-          return (
-            <a
-              href={link.href}
-              aria-current={active ? "page" : undefined}
-              class:list={[
-                "rounded-full px-4 py-2 font-[var(--font-display)] text-sm font-bold transition-all duration-200",
-                active
-                  ? "bg-[rgb(var(--color-surface-soft))] text-[rgb(var(--color-text))] shadow-sm ring-1 ring-black/8 dark:bg-white/10 dark:ring-white/10"
-                  : "text-[rgb(var(--color-text-secondary))] hover:bg-[rgb(var(--color-surface-soft))] hover:text-[rgb(var(--color-text))] dark:hover:bg-white/8 dark:hover:text-white",
-              ]}
-            >
-              {link.label}
-            </a>
-          );
-        })
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-full px-4 py-2 text-sm font-semibold text-[rgb(var(--color-text-secondary))] transition-all duration-200 hover:bg-[rgb(var(--color-surface-soft))] hover:text-[rgb(var(--color-text))]"
+          >
+            {link.label}
+          </a>
+        ))
       }
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-3">
       <button
         type="button"
-        class="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft transition hover:-translate-y-0.5 hover:border-black/15 hover:bg-[rgb(var(--color-surface-soft))] dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
+        class="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(var(--color-border))/0.16] bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
         aria-label="Toggle dark mode"
         data-theme-toggle
       >
@@ -101,8 +84,8 @@ const isActive = (href: string) => {
       </button>
 
       <a
-        href="/contact"
-        class="hidden rounded-full btn-primary px-5 py-3 font-[var(--font-display)] text-sm font-extrabold lg:inline-flex"
+        href="#contact"
+        class="hidden rounded-full btn-primary px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] lg:inline-flex"
       >
         Request Visit
       </a>
