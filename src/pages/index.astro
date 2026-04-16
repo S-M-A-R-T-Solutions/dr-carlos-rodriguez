@@ -2,39 +2,168 @@
 import MainLayout from "../layouts/MainLayout.astro";
 
 const services = [
-  'Well-Woman Exams',
-  'Prenatal Care',
-  'Menopause Support',
-  'Birth Control Counseling',
-  'Hormonal Health',
-  'Infertility Evaluations',
+  {
+    title: "Well-Woman Exams",
+    description:
+      "Routine preventive visits focused on screenings, wellness, and long-term gynecologic health for your peace of mind.",
+    image: "/images/well-woman-exams.webp",
+  },
+  {
+    title: "Birth Control",
+    description:
+      "Personalized contraceptive counseling to help patients choose the option that fits their lifestyle and goals.",
+    image: "/images/birth-control.webp",
+  },
+  {
+    title: "Pap Smears",
+    description:
+      "Screening and preventive care designed to support cervical health and early detection.",
+    image: "/images/pap-smears.webp",
+  },
+  {
+    title: "Abnormal Bleeding",
+    description:
+      "Comprehensive evaluation and treatment options for irregular or heavy menstrual bleeding.",
+    image: "/images/abnormal-bleeding.webp",
+  },
+  {
+    title: "Ovarian Cysts",
+    description:
+      "Careful diagnosis and treatment planning for ovarian cysts and related symptoms.",
+    image: "/images/ovarian-cysts.webp",
+  },
+  {
+    title: "Endometriosis",
+    description:
+      "Supportive, individualized care to help manage pain, symptoms, and long-term reproductive health.",
+    image: "/images/endometriosis.webp",
+  },
+  {
+    title: "Family Planning",
+    description:
+      "Guidance and care for patients preparing for pregnancy or planning their reproductive future.",
+    image: "/images/family-planning.webp",
+  },
+  {
+    title: "Infertility Services",
+    description:
+      "Evaluations and next-step guidance for patients seeking support with fertility concerns.",
+    image: "/images/infertility-services.webp",
+  },
+  {
+    title: "Prenatal Care",
+    description:
+      "Attentive pregnancy care focused on the health, comfort, and confidence of both mother and baby.",
+    image: "/images/prenatal-care.webp",
+  },
+  {
+    title: "Childbirth Support",
+    description:
+      "Experienced obstetric care through delivery with a calm and supportive approach.",
+    image: "/images/birth-support.webp",
+  },
+  {
+    title: "Menopause Support",
+    description:
+      "Care plans that help patients navigate hormonal changes, symptoms, and wellness during menopause.",
+    image: "/images/menopause-support.webp",
+  },
+  {
+    title: "Hormonal Health",
+    description:
+      "Evaluation and treatment for hormone-related concerns that affect daily health and quality of life.",
+    image: "/images/hormone-health.webp",
+  },
 ];
 
 const highlights = [
   {
-    title: 'Personalized care',
-    description: 'Thoughtful treatment plans tailored to each stage of life, from adolescence through menopause.',
+    title: "Patient-focused care",
+    description:
+      "An integrative, personal approach that supports every patient in a warm and attentive environment.",
   },
   {
-    title: 'Experienced providers',
-    description: 'Supportive, evidence-based obstetric and gynecologic care delivered with compassion and clarity.',
+    title: "Comprehensive women’s health",
+    description:
+      "Care through every stage of life, from the first period to pregnancy, childbirth, menopause, and beyond.",
   },
   {
-    title: 'Convenient locations',
-    description: 'Accessible women’s healthcare across South Florida with flexible scheduling and bilingual support.',
+    title: "Se habla español",
+    description:
+      "Bilingual support to help patients feel informed, comfortable, and confident in every step of care.",
   },
 ];
 
 const stats = [
-  { value: '3', label: 'South Florida locations' },
-  { value: '11+', label: 'Women’s health services' },
-  { value: '4.6/5', label: 'Average patient rating' },
+  { value: "3", label: "South Florida locations" },
+  { value: "12+", label: "Women’s health services" },
+  { value: "Integrative", label: "Patient-first approach" },
 ];
 
 const locations = [
-  { name: 'Miami', address: '3683 S Miami Ave., Suite 400, Miami, FL 33133' },
-  { name: 'Hialeah', address: '705 E 26th St., Hialeah, FL 33013' },
-  { name: 'Kendall', address: '11760 Bird Rd, Suite 734, Miami, FL 33175' },
+  {
+    name: "Miami",
+    address: "3683 S Miami Ave., Suite 400",
+	cityState: "Miami, FL",
+	zipCode: "33133",
+    mapEmbed:
+      "https://www.google.com/maps?q=3683+S+Miami+Ave+Suite+400+Miami+FL+33133&output=embed",
+  },
+  {
+    name: "Hialeah",
+    address: "705 E 26th St.",
+	cityState: "Hialeah, FL",
+	zipCode: "33013",
+    mapEmbed:
+      "https://www.google.com/maps?q=705+E+26th+St+Hialeah+FL+33013&output=embed",
+  },
+  {
+    name: "Kendall Regional Hospital",
+    address: "11760 Bird Rd, Suite 734",
+	cityState: "Miami, FL",
+	zipCode: "33175",
+    mapEmbed:
+      "https://www.google.com/maps?q=11760+Bird+Rd+Suite+734+Miami+FL+33175&output=embed",
+  },
+];
+
+const insuranceProviders = [
+  {
+    name: "Aetna",
+    src: "/images/insurances/aetna.webp",
+  },
+  {
+    name: "AmeriHealth Caritas",
+    src: "/images/insurances/amerihealth-caritas.webp",
+  },
+  {
+    name: "Anthem: Blue Cross Blue Shield",
+    src: "/images/insurances/anthem-blue-cross-blue-shield.webp",
+  },
+  {
+    name: "AvMed",
+    src: "/images/insurances/avmed.webp",
+  },
+  {
+    name: "Cigna",
+    src: "/images/insurances/cigna.webp",
+  },
+  {
+    name: "United Healthcare",
+    src: "/images/insurances/united-healthcare.webp",
+  },
+  {
+    name: "Bright Health",
+    src: "/images/insurances/bright-health.webp",
+  },
+  {
+    name: "Molina Healthcare",
+    src: "/images/insurances/molina-healthcare.webp",
+  },
+  {
+    name: "Oscar",
+    src: "/images/insurances/oscar.webp",
+  },
 ];
 ---
 
@@ -43,26 +172,39 @@ const locations = [
   description="Compassionate obstetrics and gynecology care in Miami, Hialeah, and Kendall."
 >
   <section class="relative overflow-hidden pt-8 lg:pt-10">
-    <div class="container-shell grid gap-14 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-24">
+    <div
+      class="container-shell grid gap-14 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-24"
+    >
       <div class="relative z-10 flex flex-col justify-center">
-        <span class="inline-flex w-fit rounded-full border border-[rgb(var(--color-brand))/0.18] bg-[rgb(var(--color-surface))] px-4 py-1.5 text-sm font-semibold text-[rgb(var(--color-brand))] shadow-soft">
-          Compassionate OB/GYN care in South Florida
+        <span
+          class="inline-flex w-fit rounded-full border border-[rgb(var(--color-brand))/0.18] bg-[rgb(var(--color-surface))] px-4 py-1.5 text-sm font-semibold text-[rgb(var(--color-brand))] shadow-soft"
+        >
+          Obstetrics &amp; Gynecology in Miami, Hialeah, and Kendall
         </span>
 
-        <h1 class="mt-6 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]">
+        <h1
+          class="mt-6 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]"
+        >
           Caring for women with warmth, expertise, and confidence.
         </h1>
 
         <p class="text-muted mt-6 max-w-2xl text-lg leading-8">
-          A welcoming obstetrics and gynecology practice offering preventive care, pregnancy support,
-          hormonal health services, and treatment for every stage of a woman’s journey.
+          Carlos Rodriguez Ortiz MD, PA, and his team provide compassionate
+          obstetrics and gynecology care with a patient-focused, integrative
+          approach in a personal and supportive environment.
         </p>
 
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a href="/contact" class="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold">
+          <a
+            href="#contact"
+            class="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold"
+          >
             Book an Appointment
           </a>
-          <a href="/services" class="btn-secondary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold">
+          <a
+            href="#services"
+            class="btn-secondary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold"
+          >
             View Services
           </a>
         </div>
@@ -80,18 +222,29 @@ const locations = [
       </div>
 
       <div class="relative z-10">
-        <div class="absolute -left-6 top-16 hidden h-32 w-32 rounded-full bg-[rgb(var(--color-brand))/0.18] blur-3xl lg:block"></div>
-        <div class="absolute -bottom-10 right-8 hidden h-36 w-36 rounded-full bg-[rgb(var(--color-brand-dark))/0.18] blur-3xl lg:block"></div>
+        <div
+          class="absolute -left-6 top-16 hidden h-32 w-32 rounded-full bg-[rgb(var(--color-brand))/0.18] blur-3xl lg:block"
+        >
+        </div>
+        <div
+          class="absolute -bottom-10 right-8 hidden h-36 w-36 rounded-full bg-[rgb(var(--color-brand-dark))/0.18] blur-3xl lg:block"
+        >
+        </div>
 
         <div class="surface-panel radius-brand-xl relative overflow-hidden p-3">
           <img
-            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80"
+            src="/images/hero-image.webp"
             alt="Doctor with patient in a women’s health clinic"
             class="h-[560px] w-full rounded-[calc(var(--radius-xl)-0.5rem)] object-cover"
           />
-          <div class="glass-surface absolute inset-x-0 bottom-0 m-6 rounded-[var(--radius-md)] border border-white/40 p-5 dark:border-white/10">
+          <div
+            class="glass-surface absolute inset-x-0 bottom-0 m-6 rounded-[var(--radius-md)] border border-white/40 p-5 dark:border-white/10"
+          >
             <p class="eyebrow">Patient-centered care</p>
-            <p class="mt-2 text-lg font-extrabold">Supporting women through prevention, pregnancy, and long-term wellness.</p>
+            <p class="mt-2 text-lg font-extrabold">
+              Supporting women through prevention, pregnancy, and long-term
+              wellness.
+            </p>
           </div>
         </div>
       </div>
@@ -99,7 +252,9 @@ const locations = [
   </section>
 
   <section class="container-shell py-6">
-    <div class="surface-panel grid gap-4 rounded-[var(--radius-lg)] p-4 md:grid-cols-3 md:p-6">
+    <div
+      class="surface-panel grid gap-4 rounded-[var(--radius-lg)] p-4 md:grid-cols-3 md:p-6"
+    >
       {
         locations.map((location) => (
           <div class="surface-soft rounded-[var(--radius-md)] px-5 py-5 text-center">
@@ -113,43 +268,128 @@ const locations = [
 
   <section id="about" class="container-shell py-20">
     <div class="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
-      <div class="surface-panel radius-brand overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?auto=format&fit=crop&w=1200&q=80"
-          alt="Calm consultation room in a gynecology clinic"
-          class="h-full w-full object-cover"
-        />
+      <div>
+        <div class="surface-panel radius-brand overflow-hidden aspect-[4/5]">
+          <img
+            src="/images/dr-carlos-ok.webp"
+            alt="Dr. Carlos Rodriguez Ortiz"
+            class="h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="mt-4 grid grid-cols-3 gap-3">
+          <div class="surface-panel overflow-hidden rounded-[1.25rem]">
+            <img
+              src="/images/clinic-1.webp"
+              alt="Clinic consultation"
+              class="h-24 w-full object-cover sm:h-28"
+            />
+          </div>
+          <div class="surface-panel overflow-hidden rounded-[1.25rem]">
+            <img
+              src="/images/clinic-2.webp"
+              alt="Women’s healthcare visit"
+              class="h-24 w-full object-cover sm:h-28"
+            />
+          </div>
+          <div class="surface-panel overflow-hidden rounded-[1.25rem]">
+            <img
+              src="/images/clinic-3.webp"
+              alt="Patient care in clinic"
+              class="h-24 w-full object-cover sm:h-28"
+            />
+          </div>
+        </div>
       </div>
 
       <div>
-        <p class="eyebrow">About the clinic</p>
+        <p class="eyebrow">About Carlos Rodriguez Ortiz MD, PA</p>
         <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
-          A modern, reassuring space for women’s healthcare.
+          Personalized obstetrics and gynecology care for every stage of life.
         </h2>
+
         <p class="text-muted mt-6 text-base leading-8">
-          Designed around comfort and trust, this practice offers a calm, welcoming experience where patients feel
-          heard, respected, and supported at every visit.
-        </p>
-        <p class="text-muted mt-4 text-base leading-8">
-          From routine screenings to prenatal care and menopause management, our goal is to make every step of care
-          feel personal, informed, and compassionate.
+          Carlos Rodriguez Ortiz MD, PA, and his team specialize in obstetrics
+          and gynecology at their offices in Miami and Hialeah, HCA Florida
+          Kendall Regional Hospital. Dr. Rodriguez and the compassionate team
+          take a patient-focused, integrative approach to care, addressing all
+          patient needs in a personal and supportive environment.
         </p>
 
-        <div class="mt-8 grid gap-4 sm:grid-cols-3">
-          {
-            highlights.map((item) => (
-              <div class="surface-panel rounded-[var(--radius-md)] p-5">
-                <h3 class="text-base font-extrabold">{item.title}</h3>
-                <p class="text-muted mt-2 text-sm leading-6">{item.description}</p>
-              </div>
-            ))
-          }
-        </div>
+        <p class="text-muted mt-4 text-base leading-8">
+          The practice provides comprehensive care for women through each stage
+          of their life, from their first period to pregnancy and childbirth to
+          menopause and beyond.
+        </p>
+
+        <p class="text-muted mt-4 text-base leading-8">
+          The team manages well-woman exams, birth control, and Pap smears. They
+          offer high-quality care for complex health issues as well, such as
+          abnormal bleeding, ovarian cysts, and endometriosis. Patients can also
+          take advantage of the family planning and infertility services
+          available at the practice.
+        </p>
+
+        <p class="text-muted mt-4 text-base leading-8">
+          The team’s mission is to deliver unparalleled patient care. Through
+          their caring and attentive processes, they create plans of action to
+          help patients achieve their goals. They aim to keep patients
+          well-informed about their health and all possible treatment options so
+          they can feel confident about the decisions they make.
+        </p>
+
+        <p class="text-muted mt-4 text-base leading-8">
+          For personalized obstetrics and gynecology care, call Carlos Rodriguez
+          Ortiz MD, PA, or schedule an appointment online today.
+        </p>
       </div>
     </div>
   </section>
 
-  <section id="services" class="bg-[rgb(var(--color-surface))] py-20 transition-colors duration-300">
+  <section id="mission" class="container-shell py-20">
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div
+        class="brand-gradient rounded-[var(--radius-xl)] p-8 text-white shadow-brand lg:p-10"
+      >
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-100">
+          Our mission
+        </p>
+        <h2
+          class="mt-4 font-[var(--font-display)] text-white text-3xl font-extrabold sm:text-4xl"
+        >
+          Unparalleled patient care with a caring, attentive approach.
+        </h2>
+        <p class="mt-5 text-base leading-8 text-white/90">
+          Our mission is to provide unparalleled patient care by creating a
+          compassionate, supportive, and attentive experience for every woman we
+          serve. We take the time to understand each patient’s unique needs,
+          concerns, and goals so we can establish a personalized plan of action
+          that supports their health and well-being at every stage of life.
+          Through clear communication, thoughtful guidance, and high-quality
+          care, we strive to help every patient feel informed, confident, and
+          truly cared for throughout their journey.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+        {
+          highlights.map((item) => (
+            <div class="surface-panel rounded-[var(--radius-md)] p-5">
+              <h3 class="text-base font-extrabold">{item.title}</h3>
+              <p class="text-muted mt-2 text-sm leading-6">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="services"
+    class="bg-[rgb(var(--color-surface))] py-20 transition-colors duration-300"
+  >
     <div class="container-shell">
       <div class="max-w-2xl">
         <p class="eyebrow">Services</p>
@@ -157,24 +397,37 @@ const locations = [
           Thoughtful women’s health services with a calm, clinical aesthetic.
         </h2>
         <p class="text-muted mt-4 text-base leading-8">
-          Everything from preventive wellness visits to specialized obstetric and gynecologic care.
+          Everything from preventive wellness visits to specialized obstetric
+          and gynecologic care.
         </p>
       </div>
 
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {
           services.map((service) => (
-            <article class="surface-panel rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,rgb(var(--color-surface))_0%,rgb(var(--color-surface-soft))_100%)] p-7">
-              <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgb(var(--color-brand))/0.10] text-lg font-bold text-[rgb(var(--color-brand-dark))] dark:text-[rgb(var(--color-brand))]">
-                ✿
+            <article class="surface-panel overflow-hidden rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,rgb(var(--color-surface))_0%,rgb(var(--color-surface-soft))_100%)]">
+              <div class="overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  class="h-52 w-full object-cover transition duration-500 hover:scale-[1.03]"
+                />
               </div>
-              <h3 class="mt-5 text-xl font-extrabold">{service}</h3>
-              <p class="text-muted mt-3 text-sm leading-7">
-                Supportive, patient-focused care designed to help you feel informed and cared for.
-              </p>
-              <a href="/contact" class="mt-5 inline-flex text-sm font-bold text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]">
-                Schedule now →
-              </a>
+
+              <div class="p-7">
+                <h3 class="mt-5 text-xl font-extrabold">{service.title}</h3>
+
+                <p class="text-muted mt-3 text-sm leading-7">
+                  {service.description}
+                </p>
+
+                <a
+                  href="#contact"
+                  class="mt-5 inline-flex text-sm font-bold text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]"
+                >
+                  Schedule now →
+                </a>
+              </div>
             </article>
           ))
         }
@@ -182,35 +435,106 @@ const locations = [
     </div>
   </section>
 
+  <section id="insurances" class="container-shell py-20">
+    <div class="surface-panel radius-brand-xl p-8 lg:p-12">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Insurances</p>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+          We accept most insurance providers.
+        </h2>
+        <p class="text-muted mt-4 text-base leading-8">
+          If you have specific questions regarding your coverage, please contact
+          us for additional information.
+        </p>
+      </div>
+
+      <div
+        class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+      >
+        {
+          insuranceProviders.map((provider) => (
+            <div class="surface-soft flex items-center justify-center rounded-[var(--radius-md)] border border-[rgb(var(--color-border))/0.12] px-0 py-0 text-center">
+              <img
+                src={provider.src}
+                alt={provider.name}
+                class="rounded-[var(--radius-md)] object-cover"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <section id="locations" class="container-shell py-20">
-    <div class="surface-panel radius-brand-xl overflow-hidden bg-[linear-gradient(135deg,rgb(var(--color-surface-soft))_0%,rgb(var(--color-surface))_55%,rgb(var(--color-highlight))_100%)] p-8 lg:p-12">
-      <div class="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
-        <div>
-          <p class="eyebrow">Locations & contact</p>
+    <div
+      class="surface-panel radius-brand-xl overflow-hidden bg-[linear-gradient(135deg,rgb(var(--color-surface-soft))_0%,rgb(var(--color-surface))_55%,rgb(var(--color-highlight))_100%)] p-8 lg:p-12"
+    >
+      <div class="mx-auto max-w-5xl">
+        <div class="max-w-3xl">
+          <p class="eyebrow">Locations &amp; contact</p>
           <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
             Convenient care, close to home.
           </h2>
-          <p class="text-muted mt-5 max-w-xl text-base leading-8">
-            Visit our South Florida offices for attentive obstetric and gynecologic care in a calm, welcoming setting.
+          <p class="text-muted mt-5 text-base leading-8">
+            Visit our South Florida offices for attentive obstetric and
+            gynecologic care in a calm, welcoming setting.
           </p>
-
-          <div class="mt-8 space-y-4">
-            {
-              locations.map((location) => (
-                <div class="surface-panel rounded-[var(--radius-md)] p-5">
-                  <p class="font-extrabold">{location.name}</p>
-                  <p class="text-muted mt-1 text-sm">{location.address}</p>
-                </div>
-              ))
-            }
-          </div>
         </div>
 
-        <div id="contact" class="brand-gradient radius-brand p-8 text-white shadow-brand lg:p-10">
-          <p class="text-sm font-bold uppercase tracking-[0.22em] text-cyan-100">Request an appointment</p>
-          <h3 class="mt-4 font-[var(--font-display)] text-2xl font-extrabold">Start your visit with confidence.</h3>
+        <div class="flex flex-row justify-between mt-10 space-x-6">
+          {
+            locations.map((location) => (
+              <div class="flex flex-row w-[33%] surface-panel overflow-hidden rounded-[var(--radius-md)]">
+                <div class="flex flex-col lg:flex-col">
+                  <div class="p-3 lg:p-6">
+                    <p class="text-xl font-extrabold">{location.name} <br> Location</p>
+                    <p class="text-muted mt-2 text-sm leading-7">
+                      {location.address} <br> {location.cityState} {location.zipCode}
+                    </p>
+
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-5 inline-flex text-sm font-bold text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]"
+                    >
+                      Get directions →
+                    </a>
+                  </div>
+
+                  <div class="border-t lg:min-h-full lg:border-l lg:border-t-0">
+                    <iframe
+                      src={location.mapEmbed}
+                      title={`Map of ${location.name}`}
+                      class="h-full min-h-[260px] w-full"
+                      style="border:0;"
+                      loading="lazy"
+                      allowfullscreen
+                      referrerpolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div
+          id="contact"
+          class="brand-gradient radius-brand mt-10 p-8 text-white shadow-brand lg:p-10"
+        >
+          <p
+            class="text-sm font-bold uppercase tracking-[0.22em] text-cyan-100"
+          >
+            Request an appointment
+          </p>
+          <h3 class="mt-4 text-white font-[var(--font-display)] text-2xl font-extrabold">
+            Start your visit with confidence.
+          </h3>
           <p class="mt-4 text-sm leading-7 text-white/85">
-            Replace this form with your scheduling tool, patient intake flow, or embedded booking widget.
+            Replace this form with your scheduling tool, patient intake flow, or
+            embedded booking widget.
           </p>
 
           <form class="mt-8 grid gap-4">
@@ -246,7 +570,13 @@ const locations = [
 
           <div class="mt-8 border-t border-white/12 pt-6 text-sm text-white/85">
             <p><span class="font-bold text-white">Phone:</span> 786-332-2922</p>
-            <p class="mt-2"><span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM – 5:30 PM · Fri 9:00 AM – 2:30 PM</p>
+            <p class="mt-2">
+              <span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM – 5:30
+              PM · Fri 9:00 AM – 2:30 PM
+            </p>
+            <p class="mt-2">
+              <span class="font-bold text-white">Language:</span> Se habla español.
+            </p>
           </div>
         </div>
       </div>
