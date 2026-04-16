@@ -1,0 +1,144 @@
+---
+const quickLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/locations", label: "Locations" },
+  { href: "/contact", label: "Contact" },
+];
+
+const services = [
+  "Well-Woman Exams",
+  "Prenatal Care",
+  "Menopause Support",
+  "Birth Control Counseling",
+  "Hormonal Health",
+  "Infertility Evaluations",
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="relative mt-24 border-t border-black/5 bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] transition-colors duration-300 dark:border-white/10"
+>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-[radial-gradient(circle_at_top_left,rgba(12,91,113,0.12),transparent_40%),radial-gradient(circle_at_top_right,rgba(143,208,223,0.12),transparent_35%),radial-gradient(circle_at_center,rgba(47,79,79,0.10),transparent_45%)]"
+  >
+  </div>
+
+  <div class="container-shell py-14 lg:py-16">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] lg:gap-8">
+      <div>
+        <a
+          href="/"
+          class="group inline-flex shrink-0 items-center gap-3"
+          aria-label="Carlos Rodriguez Ortiz MD, PA home"
+        >
+          <span
+            class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgb(var(--color-brand))/0.12] font-[var(--font-display)] text-sm font-extrabold tracking-[0.12em] text-[rgb(var(--color-brand-dark))] dark:bg-[rgb(var(--color-brand))/0.16] dark:text-[rgb(var(--color-brand))]"
+          >
+            OBG
+          </span>
+
+          <span class="flex flex-col leading-none">
+            <span
+              class="font-[var(--font-display)] text-lg font-extrabold tracking-tight text-[rgb(var(--color-text))]"
+            >
+              Carlos Rodriguez Ortiz MD, PA
+            </span>
+            <span
+              class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-[rgb(var(--color-text-secondary))]"
+            >
+              Obstetrics & Gynecology
+            </span>
+          </span>
+        </a>
+
+        <p
+          class="mt-5 max-w-md text-sm leading-7 text-[rgb(var(--color-text-secondary))]"
+        >
+          Compassionate women’s healthcare with a calm, modern experience for
+          preventive care, pregnancy, hormonal wellness, and every stage of
+          life.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-[var(--font-display)] text-lg font-extrabold">
+          Quick Links
+        </h3>
+        <ul class="mt-4 space-y-3">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm font-semibold text-[rgb(var(--color-text-secondary))] transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-[var(--font-display)] text-lg font-extrabold">
+          Services
+        </h3>
+        <ul class="mt-4 space-y-3">
+          {
+            services.map((service) => (
+              <li class="text-sm font-semibold text-[rgb(var(--color-text-secondary))]">
+                {service}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-[var(--font-display)] text-lg font-extrabold">
+          Contact
+        </h3>
+        <ul
+          class="mt-4 space-y-4 text-sm font-semibold text-[rgb(var(--color-text-secondary))]"
+        >
+          <li>
+            <a
+              href="tel:7863322922"
+              class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
+            >
+              786-332-2922
+            </a>
+          </li>
+          <li>3683 S Miami Ave., Suite 400, Miami, FL 33133</li>
+          <li>Miami · Hialeah · Kendall</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-black/5 pt-6 text-sm text-[rgb(var(--color-text-secondary))] dark:border-white/10 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {currentYear} Carlos Rodriguez Ortiz MD, PA. All rights reserved.</p>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          href="/privacy-policy"
+          class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
+        >
+          Privacy Policy
+        </a>
+        <a
+          href="/terms"
+          class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
+        >
+          Terms
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,11 +1,255 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from "../layouts/MainLayout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const services = [
+  'Well-Woman Exams',
+  'Prenatal Care',
+  'Menopause Support',
+  'Birth Control Counseling',
+  'Hormonal Health',
+  'Infertility Evaluations',
+];
+
+const highlights = [
+  {
+    title: 'Personalized care',
+    description: 'Thoughtful treatment plans tailored to each stage of life, from adolescence through menopause.',
+  },
+  {
+    title: 'Experienced providers',
+    description: 'Supportive, evidence-based obstetric and gynecologic care delivered with compassion and clarity.',
+  },
+  {
+    title: 'Convenient locations',
+    description: 'Accessible women’s healthcare across South Florida with flexible scheduling and bilingual support.',
+  },
+];
+
+const stats = [
+  { value: '3', label: 'South Florida locations' },
+  { value: '11+', label: 'Women’s health services' },
+  { value: '4.6/5', label: 'Average patient rating' },
+];
+
+const locations = [
+  { name: 'Miami', address: '3683 S Miami Ave., Suite 400, Miami, FL 33133' },
+  { name: 'Hialeah', address: '705 E 26th St., Hialeah, FL 33013' },
+  { name: 'Kendall', address: '11760 Bird Rd, Suite 734, Miami, FL 33175' },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout
+  title="Carlos Rodriguez Ortiz MD, PA | Obstetrics & Gynecology"
+  description="Compassionate obstetrics and gynecology care in Miami, Hialeah, and Kendall."
+>
+  <section class="relative overflow-hidden pt-8 lg:pt-10">
+    <div class="container-shell grid gap-14 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-24">
+      <div class="relative z-10 flex flex-col justify-center">
+        <span class="inline-flex w-fit rounded-full border border-[rgb(var(--color-brand))/0.18] bg-[rgb(var(--color-surface))] px-4 py-1.5 text-sm font-semibold text-[rgb(var(--color-brand))] shadow-soft">
+          Compassionate OB/GYN care in South Florida
+        </span>
+
+        <h1 class="mt-6 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]">
+          Caring for women with warmth, expertise, and confidence.
+        </h1>
+
+        <p class="text-muted mt-6 max-w-2xl text-lg leading-8">
+          A welcoming obstetrics and gynecology practice offering preventive care, pregnancy support,
+          hormonal health services, and treatment for every stage of a woman’s journey.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a href="/contact" class="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold">
+            Book an Appointment
+          </a>
+          <a href="/services" class="btn-secondary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-[var(--font-display)] text-base font-extrabold">
+            View Services
+          </a>
+        </div>
+
+        <div class="mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
+          {
+            stats.map((item) => (
+              <div class="surface-panel rounded-[var(--radius-md)] p-5">
+                <p class="text-2xl font-extrabold">{item.value}</p>
+                <p class="text-muted mt-1 text-sm">{item.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <div class="absolute -left-6 top-16 hidden h-32 w-32 rounded-full bg-[rgb(var(--color-brand))/0.18] blur-3xl lg:block"></div>
+        <div class="absolute -bottom-10 right-8 hidden h-36 w-36 rounded-full bg-[rgb(var(--color-brand-dark))/0.18] blur-3xl lg:block"></div>
+
+        <div class="surface-panel radius-brand-xl relative overflow-hidden p-3">
+          <img
+            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80"
+            alt="Doctor with patient in a women’s health clinic"
+            class="h-[560px] w-full rounded-[calc(var(--radius-xl)-0.5rem)] object-cover"
+          />
+          <div class="glass-surface absolute inset-x-0 bottom-0 m-6 rounded-[var(--radius-md)] border border-white/40 p-5 dark:border-white/10">
+            <p class="eyebrow">Patient-centered care</p>
+            <p class="mt-2 text-lg font-extrabold">Supporting women through prevention, pregnancy, and long-term wellness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-shell py-6">
+    <div class="surface-panel grid gap-4 rounded-[var(--radius-lg)] p-4 md:grid-cols-3 md:p-6">
+      {
+        locations.map((location) => (
+          <div class="surface-soft rounded-[var(--radius-md)] px-5 py-5 text-center">
+            <p class="eyebrow">Now serving</p>
+            <p class="mt-2 text-lg font-extrabold">{location.name}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="about" class="container-shell py-20">
+    <div class="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="surface-panel radius-brand overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?auto=format&fit=crop&w=1200&q=80"
+          alt="Calm consultation room in a gynecology clinic"
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+      <div>
+        <p class="eyebrow">About the clinic</p>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+          A modern, reassuring space for women’s healthcare.
+        </h2>
+        <p class="text-muted mt-6 text-base leading-8">
+          Designed around comfort and trust, this practice offers a calm, welcoming experience where patients feel
+          heard, respected, and supported at every visit.
+        </p>
+        <p class="text-muted mt-4 text-base leading-8">
+          From routine screenings to prenatal care and menopause management, our goal is to make every step of care
+          feel personal, informed, and compassionate.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          {
+            highlights.map((item) => (
+              <div class="surface-panel rounded-[var(--radius-md)] p-5">
+                <h3 class="text-base font-extrabold">{item.title}</h3>
+                <p class="text-muted mt-2 text-sm leading-6">{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="bg-[rgb(var(--color-surface))] py-20 transition-colors duration-300">
+    <div class="container-shell">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Services</p>
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+          Thoughtful women’s health services with a calm, clinical aesthetic.
+        </h2>
+        <p class="text-muted mt-4 text-base leading-8">
+          Everything from preventive wellness visits to specialized obstetric and gynecologic care.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((service) => (
+            <article class="surface-panel rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,rgb(var(--color-surface))_0%,rgb(var(--color-surface-soft))_100%)] p-7">
+              <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgb(var(--color-brand))/0.10] text-lg font-bold text-[rgb(var(--color-brand-dark))] dark:text-[rgb(var(--color-brand))]">
+                ✿
+              </div>
+              <h3 class="mt-5 text-xl font-extrabold">{service}</h3>
+              <p class="text-muted mt-3 text-sm leading-7">
+                Supportive, patient-focused care designed to help you feel informed and cared for.
+              </p>
+              <a href="/contact" class="mt-5 inline-flex text-sm font-bold text-[rgb(var(--color-brand))] hover:text-[rgb(var(--color-brand-dark))]">
+                Schedule now →
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="locations" class="container-shell py-20">
+    <div class="surface-panel radius-brand-xl overflow-hidden bg-[linear-gradient(135deg,rgb(var(--color-surface-soft))_0%,rgb(var(--color-surface))_55%,rgb(var(--color-highlight))_100%)] p-8 lg:p-12">
+      <div class="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+        <div>
+          <p class="eyebrow">Locations & contact</p>
+          <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">
+            Convenient care, close to home.
+          </h2>
+          <p class="text-muted mt-5 max-w-xl text-base leading-8">
+            Visit our South Florida offices for attentive obstetric and gynecologic care in a calm, welcoming setting.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            {
+              locations.map((location) => (
+                <div class="surface-panel rounded-[var(--radius-md)] p-5">
+                  <p class="font-extrabold">{location.name}</p>
+                  <p class="text-muted mt-1 text-sm">{location.address}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div id="contact" class="brand-gradient radius-brand p-8 text-white shadow-brand lg:p-10">
+          <p class="text-sm font-bold uppercase tracking-[0.22em] text-cyan-100">Request an appointment</p>
+          <h3 class="mt-4 font-[var(--font-display)] text-2xl font-extrabold">Start your visit with confidence.</h3>
+          <p class="mt-4 text-sm leading-7 text-white/85">
+            Replace this form with your scheduling tool, patient intake flow, or embedded booking widget.
+          </p>
+
+          <form class="mt-8 grid gap-4">
+            <input
+              type="text"
+              placeholder="Full name"
+              class="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder:text-white/65 outline-none transition focus:border-cyan-200"
+            />
+            <div class="grid gap-4 sm:grid-cols-2">
+              <input
+                type="email"
+                placeholder="Email"
+                class="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder:text-white/65 outline-none transition focus:border-cyan-200"
+              />
+              <input
+                type="tel"
+                placeholder="Phone"
+                class="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder:text-white/65 outline-none transition focus:border-cyan-200"
+              />
+            </div>
+            <textarea
+              rows="5"
+              placeholder="How can we help you?"
+              class="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white placeholder:text-white/65 outline-none transition focus:border-cyan-200"
+            ></textarea>
+            <button
+              type="submit"
+              class="inline-flex w-fit items-center justify-center rounded-full bg-white px-6 py-3 font-[var(--font-display)] text-sm font-extrabold text-[rgb(var(--color-brand-dark))] transition hover:bg-slate-100"
+            >
+              Send Request
+            </button>
+          </form>
+
+          <div class="mt-8 border-t border-white/12 pt-6 text-sm text-white/85">
+            <p><span class="font-bold text-white">Phone:</span> 786-332-2922</p>
+            <p class="mt-2"><span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM – 5:30 PM · Fri 9:00 AM – 2:30 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,113 @@
+---
+import "../styles/global.css";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Carlos Rodriguez Ortiz MD, PA",
+  description = "Compassionate obstetrics and gynecology care in Miami, Hialeah, and Kendall.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f6f9fa" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      (() => {
+        const storageKey = "clinic-theme";
+        const root = document.documentElement;
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+        const getSystemTheme = () =>
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+
+        const applyTheme = (theme) => {
+          root.classList.remove("light", "dark");
+          root.classList.add(theme);
+          root.dataset.theme = theme;
+
+          if (metaTheme) {
+            metaTheme.setAttribute(
+              "content",
+              theme === "dark" ? "#09151c" : "#f6f9fa",
+            );
+          }
+        };
+
+        try {
+          const storedTheme = localStorage.getItem(storageKey);
+          const initialTheme = storedTheme || getSystemTheme();
+          applyTheme(initialTheme);
+
+          window.__setPreferredTheme = (theme) => {
+            localStorage.setItem(storageKey, theme);
+            applyTheme(theme);
+          };
+
+          window.__getPreferredTheme = () => root.dataset.theme || initialTheme;
+
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", (event) => {
+              const stored = localStorage.getItem(storageKey);
+              if (!stored) {
+                applyTheme(event.matches ? "dark" : "light");
+              }
+            });
+        } catch {
+          applyTheme("light");
+        }
+      })();
+    </script>
+  </head>
+
+  <body
+    class="bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] font-[var(--font-body)] antialiased transition-colors duration-300"
+  >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[rgb(var(--color-surface))] focus:px-4 focus:py-2 focus:text-[rgb(var(--color-text))]"
+    >
+      Skip to content
+    </a>
+
+    <div
+      class="relative min-h-screen overflow-x-clip bg-[rgb(var(--color-bg))]"
+    >
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] hero-glow"
+      >
+      </div>
+
+      <Header />
+
+      <main id="main-content" class="relative">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>
