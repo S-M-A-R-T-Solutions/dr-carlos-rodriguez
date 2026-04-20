@@ -1,0 +1,93 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Thank You | Carlos Rodriguez Ortiz MD, PA"
+  description="Thank you for contacting Carlos Rodriguez Ortiz MD, PA. Your request has been received."
+  canonical="https://carlosridriguezmd.com/thank-you"
+>
+  <section class="hero-cinematic pt-8 lg:pt-10">
+    <div class="hero-cinematic__overlay"></div>
+    <div class="hero-pattern"></div>
+
+    <div class="container-shell relative z-10 py-20 lg:py-28">
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow-chip border-white/20 bg-white/10 text-white">
+          Appointment request received
+        </span>
+
+        <h1
+          class="mt-6 font-[var(--font-display)] text-5xl font-normal leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl"
+        >
+          Thank you for contacting us.
+        </h1>
+
+        <p class="mt-6 text-lg leading-8 text-white/82">
+          Your message has been submitted successfully. A member of our team
+          will review your request and get back to you as soon as possible.
+        </p>
+
+        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="/"
+            class="btn-light inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
+          >
+            Return Home
+          </a>
+
+          <a
+            href="/#locations"
+            class="btn-outline-light inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold uppercase tracking-[0.16em]"
+          >
+            View Locations
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-shell py-20">
+    <div class="ornament-panel mx-auto max-w-4xl">
+      <p class="eyebrow">What happens next</p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="surface-panel rounded-[1.5rem] p-6">
+          <p class="font-[var(--font-display)] text-2xl font-normal">
+            1. We review
+          </p>
+          <p class="text-muted mt-3 text-sm leading-7">
+            Our team receives your request and reviews the information you sent.
+          </p>
+        </div>
+
+        <div class="surface-panel rounded-[1.5rem] p-6">
+          <p class="font-[var(--font-display)] text-2xl font-normal">
+            2. We contact you
+          </p>
+          <p class="text-muted mt-3 text-sm leading-7">
+            We will reach out to confirm details and help schedule your visit.
+          </p>
+        </div>
+
+        <div class="surface-panel rounded-[1.5rem] p-6">
+          <p class="font-[var(--font-display)] text-2xl font-normal">
+            3. You feel prepared
+          </p>
+          <p class="text-muted mt-3 text-sm leading-7">
+            We aim to make the process simple, clear, and supportive from the
+            very beginning.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="mt-10 rounded-[1.5rem] bg-[rgb(var(--color-surface-soft))] p-6"
+      >
+        <p class="text-sm leading-7 text-[rgb(var(--color-text-secondary))]">
+          Are you having an emergency? Call <a href="tel:911"><span class="ml-1 font-semibold text-[rgb(var(--color-brand-dark))]">911</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
