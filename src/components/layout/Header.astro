@@ -51,7 +51,7 @@ const navLinks = [
     <div class="flex items-center gap-2 sm:gap-3">
       <button
         type="button"
-        class="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(var(--color-border))/0.16] bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
+        class="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(var(--color-border))/0.16] bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
         aria-label="Toggle dark mode"
         data-theme-toggle
       >
@@ -98,21 +98,6 @@ const navLinks = [
     const doc = document.documentElement;
     const themeButton = document.querySelector("[data-theme-toggle]");
 
-    const getStoredTheme = () => {
-      const saved = localStorage.getItem("clinic-theme");
-      if (saved === "light" || saved === "dark") return saved;
-
-      if (doc.classList.contains("dark")) return "dark";
-      return "light";
-    };
-
-    const applyTheme = (theme) => {
-      doc.dataset.theme = theme;
-      doc.classList.remove("light", "dark");
-      doc.classList.add(theme);
-      localStorage.setItem("clinic-theme", theme);
-    };
-
     const getTheme = () => {
       if (doc.classList.contains("dark")) return "dark";
       return "light";
@@ -126,7 +111,6 @@ const navLinks = [
       );
     };
 
-    applyTheme(getStoredTheme());
     syncThemeButton();
 
     themeButton?.addEventListener("click", () => {
@@ -135,7 +119,10 @@ const navLinks = [
       if (typeof window.__setPreferredTheme === "function") {
         window.__setPreferredTheme(nextTheme);
       } else {
-        applyTheme(nextTheme);
+        doc.dataset.theme = nextTheme;
+        doc.classList.remove("light", "dark");
+        doc.classList.add(nextTheme);
+        localStorage.setItem("clinic-theme", nextTheme);
       }
 
       syncThemeButton();
