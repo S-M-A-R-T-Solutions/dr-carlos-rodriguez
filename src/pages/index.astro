@@ -1,6 +1,21 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 
+const heroSlides = [
+  {
+    src: "/images/hero-section/hero-1.webp",
+    alt: "Doctor with patient in a women’s health clinic",
+  },
+  {
+    src: "/images/hero-section/hero-2.webp",
+    alt: "Clinic consultation room",
+  },
+  {
+    src: "/images/hero-section/hero-3.webp",
+    alt: "Women’s healthcare visit",
+  },
+];
+
 const services = [
   {
     title: "Well-Woman Exams",
@@ -149,7 +164,10 @@ const insuranceProviders = [
     src: "/images/insurances/molina-healthcare.webp",
   },
   { name: "Oscar", src: "/images/insurances/oscar.webp" },
-  { name: "No Insurance? Contact Us", src: "/images/insurances/no-insurance.webp" },
+  {
+    name: "No Insurance? Contact Us",
+    src: "/images/insurances/no-insurance.webp",
+  },
 ];
 ---
 
@@ -199,12 +217,99 @@ const insuranceProviders = [
         <div class="relative">
           <div class="hero-side-panel">
             <div class="hero-side-panel__image">
-              <img
-                src="/images/hero-image-2.webp"
-                alt="Doctor with patient in a women’s health clinic"
-                class="h-[540px] w-full rounded-[1.7rem] object-cover"
-              />
+              <div class="hero-slider" data-hero-slider>
+                <div class="hero-slider__track">
+                  {
+                    heroSlides.map((slide, index) => (
+                      <div
+                        class:list={["hero-slide", index === 0 && "is-active"]}
+                      >
+                        <img
+                          src={slide.src}
+                          alt={slide.alt}
+                          class="hero-slide__image"
+                        />
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <button
+                  class="hero-slider__arrow hero-slider__arrow--prev"
+                  type="button"
+                  aria-label="Previous image"
+                  data-hero-prev
+                  style="cursor: pointer;"
+                >
+                  <span aria-hidden="true">←</span>
+                </button>
+
+                <button
+                  class="hero-slider__arrow hero-slider__arrow--next"
+                  type="button"
+                  aria-label="Next image"
+                  data-hero-next
+                  style="cursor: pointer;"
+                >
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </div>
+
+            <script is:inline>
+              (() => {
+                const slider = document.querySelector("[data-hero-slider]");
+                if (!slider) return;
+
+                const slides = Array.from(
+                  slider.querySelectorAll(".hero-slide"),
+                );
+                const prevBtn = slider.querySelector("[data-hero-prev]");
+                const nextBtn = slider.querySelector("[data-hero-next]");
+
+                let current = 0;
+                let autoplay;
+
+                const showSlide = (index) => {
+                  slides.forEach((slide, i) => {
+                    slide.classList.toggle("is-active", i === index);
+                  });
+                  current = index;
+                };
+
+                const nextSlide = () => {
+                  showSlide((current + 1) % slides.length);
+                };
+
+                const prevSlide = () => {
+                  showSlide((current - 1 + slides.length) % slides.length);
+                };
+
+                const startAutoplay = () => {
+                  stopAutoplay();
+                  autoplay = setInterval(nextSlide, 6000);
+                };
+
+                const stopAutoplay = () => {
+                  if (autoplay) clearInterval(autoplay);
+                };
+
+                nextBtn?.addEventListener("click", () => {
+                  nextSlide();
+                  startAutoplay();
+                });
+
+                prevBtn?.addEventListener("click", () => {
+                  prevSlide();
+                  startAutoplay();
+                });
+
+                slider.addEventListener("mouseenter", stopAutoplay);
+                slider.addEventListener("mouseleave", startAutoplay);
+
+                startAutoplay();
+              })();
+            </script>
 
             <div class="hero-side-panel__stats">
               {
@@ -252,7 +357,9 @@ const insuranceProviders = [
           />
         </div>
 
-        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--one">
+        <div
+          class="stacked-media-layout__thumb stacked-media-layout__thumb--one"
+        >
           <img
             src="/images/clinic-1.webp"
             alt="Clinic consultation"
@@ -260,7 +367,9 @@ const insuranceProviders = [
           />
         </div>
 
-        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--two">
+        <div
+          class="stacked-media-layout__thumb stacked-media-layout__thumb--two"
+        >
           <img
             src="/images/clinic-2.webp"
             alt="Women’s healthcare visit"
@@ -268,7 +377,9 @@ const insuranceProviders = [
           />
         </div>
 
-        <div class="stacked-media-layout__thumb stacked-media-layout__thumb--three">
+        <div
+          class="stacked-media-layout__thumb stacked-media-layout__thumb--three"
+        >
           <img
             src="/images/clinic-3.webp"
             alt="Patient care in clinic"
@@ -323,7 +434,9 @@ const insuranceProviders = [
         <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
           Our mission
         </p>
-        <h2 class="mt-4 font-[var(--font-display)] text-4xl font-normal leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+        <h2
+          class="mt-4 font-[var(--font-display)] text-4xl font-normal leading-[0.98] text-white sm:text-5xl lg:text-6xl"
+        >
           Unparalleled patient care in a supportive and attentive environment.
         </h2>
         <p class="mt-6 max-w-3xl text-base leading-8 text-white/82">
@@ -349,15 +462,17 @@ const insuranceProviders = [
   </section>
 
   <section id="services" class="container-shell py-24">
-    <div >
+    <div>
       <p class="eyebrow">Services</p>
       <h2 class="section-heading mt-4">
         Thoughtful women’s health services with a more expressive presentation.
       </h2>
       <p class="text-muted mt-4 text-base leading-8">
         We provide attentive obstetrics and gynecology care for a wide range of
-		concerns, from routine exams to complex health issues, with a more
-		elevated and welcoming experience. Explore our services below, and contact us if you have any questions or want to learn more about how we can support your care.
+        concerns, from routine exams to complex health issues, with a more
+        elevated and welcoming experience. Explore our services below, and
+        contact us if you have any questions or want to learn more about how we
+        can support your care.
       </p>
     </div>
 
@@ -371,7 +486,7 @@ const insuranceProviders = [
                 alt={service.title}
                 class="h-full w-full object-cover transition duration-700 hover:scale-[1.05]"
               />
-              <div class="immersive-service-card__overlay"></div>
+              <div class="immersive-service-card__overlay" />
             </div>
 
             <div class="immersive-service-card__content">
@@ -412,7 +527,7 @@ const insuranceProviders = [
         <div class="showcase-panel__grid">
           {
             insuranceProviders.map((provider) => (
-              <div class="insurance-badge">
+              <div class="insurance-badge hover:scale-[1.05] transition duration-300">
                 <img
                   src={provider.src}
                   alt={provider.name}
@@ -458,7 +573,8 @@ const insuranceProviders = [
                 {location.name}
               </p>
               <p class="text-muted mt-3 text-sm leading-7">
-                {location.address} <br /> {location.cityState} {location.zipCode}
+                {location.address} <br /> {location.cityState}{" "}
+                {location.zipCode}
               </p>
 
               <a
@@ -483,7 +599,9 @@ const insuranceProviders = [
           <p class="eyebrow text-[rgb(var(--color-accent-contrast))]">
             Request an appointment
           </p>
-          <h3 class="mt-4 font-[var(--font-display)] text-4xl font-normal text-white">
+          <h3
+            class="mt-4 font-[var(--font-display)] text-4xl font-normal text-white"
+          >
             Start your visit with confidence.
           </h3>
           <p class="mt-4 text-sm leading-7 text-white/84">
@@ -494,8 +612,8 @@ const insuranceProviders = [
           <div class="mt-8 space-y-3 text-sm text-white/88">
             <p><span class="font-bold text-white">Phone:</span> 786-332-2922</p>
             <p>
-              <span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM –
-              5:30 PM · Fri 9:00 AM – 2:30 PM
+              <span class="font-bold text-white">Hours:</span> Mon–Thu 9:00 AM – 5:30
+              PM · Fri 9:00 AM – 2:30 PM
             </p>
             <p>
               <span class="font-bold text-white">Language:</span> Se habla español.
@@ -512,8 +630,7 @@ const insuranceProviders = [
           <textarea
             rows="5"
             placeholder="How can we help you?"
-            class="contact-input"
-          ></textarea>
+            class="contact-input"></textarea>
           <button
             type="submit"
             class="inline-flex w-fit items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand-dark))] transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
