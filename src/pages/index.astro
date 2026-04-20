@@ -622,16 +622,56 @@ const insuranceProviders = [
           </div>
         </div>
 
-        <form class="contact-form-glass" method="POST" data-netlify="true">
-          <input type="text" placeholder="Full name" class="contact-input" />
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form-glass"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+
+          <p hidden>
+            <label>
+              Don’t fill this out if you're human:
+              <input name="bot-field" />
+            </label>
+          </p>
+
+          <input
+            type="text"
+            name="full-name"
+            placeholder="Full name"
+            class="contact-input"
+            autocomplete="name"
+            required
+          />
+
           <div class="grid gap-4 sm:grid-cols-2">
-            <input type="email" placeholder="Email" class="contact-input" />
-            <input type="tel" placeholder="Phone" class="contact-input" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="contact-input"
+              autocomplete="email"
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone"
+              class="contact-input"
+              autocomplete="tel"
+            />
           </div>
+
           <textarea
+            name="message"
             rows="5"
             placeholder="How can we help you?"
-            class="contact-input"></textarea>
+            class="contact-input"
+            required></textarea>
+
           <button
             type="submit"
             class="inline-flex w-fit items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[rgb(var(--color-brand-dark))] transition hover:-translate-y-0.5 hover:bg-[rgb(var(--color-surface-soft))]"
