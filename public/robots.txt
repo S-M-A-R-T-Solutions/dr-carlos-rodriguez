@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://carlosrodriguezmd.com/sitemap-index.xml

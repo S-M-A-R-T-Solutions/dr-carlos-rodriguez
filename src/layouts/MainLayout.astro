@@ -6,11 +6,13 @@ import Footer from "../components/layout/Footer.astro";
 export interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = "Carlos Rodriguez Ortiz MD, PA",
   description = "Compassionate obstetrics and gynecology care in Miami, Hialeah, and Kendall.",
+  canonical = "https://carlosrodriguezmd.com",
 } = Astro.props;
 ---
 
@@ -25,11 +27,88 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#edf5fc" />
 
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta
+      property="og:image"
+      content="https://carlosrodriguezmd.com/images/hero-image.webp"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://carlosrodriguezmd.com/images/hero-image.webp"
+    />
+    <meta name="robots" content="index, follow" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
+    />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Physician",
+        name: "Carlos Rodriguez Ortiz MD, PA",
+        image: "https://carlosrodriguezmd.com/images/dr-carlos-ok.webp",
+        url: "https://carlosrodriguezmd.com/",
+        telephone: "+1-786-332-2922",
+        medicalSpecialty: ["Obstetrics", "Gynecology"],
+        address: [
+          {
+            "@type": "PostalAddress",
+            streetAddress: "3683 S Miami Ave., Suite 400",
+            addressLocality: "Miami",
+            addressRegion: "FL",
+            postalCode: "33133",
+            addressCountry: "US",
+          },
+          {
+            "@type": "PostalAddress",
+            streetAddress: "705 E 26th St.",
+            addressLocality: "Hialeah",
+            addressRegion: "FL",
+            postalCode: "33013",
+            addressCountry: "US",
+          },
+          {
+            "@type": "PostalAddress",
+            streetAddress: "11760 Bird Rd, Suite 734",
+            addressLocality: "Miami",
+            addressRegion: "FL",
+            postalCode: "33175",
+            addressCountry: "US",
+          },
+        ],
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+            opens: "09:00",
+            closes: "17:30",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Friday",
+            opens: "09:00",
+            closes: "14:30",
+          },
+        ],
+        areaServed: ["Miami, FL", "Hialeah, FL", "Kendall, FL"],
+      })}
     />
 
     <script is:inline>
