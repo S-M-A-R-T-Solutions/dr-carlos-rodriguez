@@ -1,16 +1,13 @@
 ---
-import EmailIcon from "../icons/EmailIcon.astro";
 import PhoneIcon from "../icons/PhoneIcon.astro";
 import LocationPin from "../icons/LocationPin.astro";
-import FacebookIcon from "../icons/FacebookIcon.astro";
-import InstagramIcon from "../icons/InstagramIcon.astro";
 
 const quickLinks = [
-  { href: "#", label: "Home" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Services" },
-  { href: "#", label: "Locations" },
-  { href: "#", label: "Contact" },
+  { href: "/#main-content", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services" },
+  { href: "/#locations", label: "Locations" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const services = [
@@ -41,7 +38,7 @@ const currentYear = new Date().getFullYear();
           class="group inline-flex shrink-0 items-center gap-3"
           aria-label="Carlos Rodriguez Ortiz MD, PA home"
         >
-          <img src="/images/logo-dr.webp" alt="Clinic Logo" class="h-15 w-15" />
+          <img src="/images/logo-dr.webp" alt="Carlos Rodriguez Ortiz MD, PA logo" class="h-15 w-15" />
 
           <span class="flex flex-col leading-none">
             <span
@@ -64,20 +61,6 @@ const currentYear = new Date().getFullYear();
           preventive care, pregnancy, hormonal wellness, and every stage of
           life.
         </p>
-        <div id="social-media" class="flex flex-row mt-6 gap-4">
-            <a
-                href="#"
-                class="text-[rgb(var(--color-text-secondary))] transition-colors duration-200 hover:text-[rgb(var(--color-text))] transform hover:scale-110"
-            >
-                <FacebookIcon />
-            </a>
-            <a
-                href="#"
-                class="text-[rgb(var(--color-text-secondary))] transition-colors duration-200 hover:text-[rgb(var(--color-text))] transform hover:scale-110"
-            >
-                <InstagramIcon />
-            </a>
-        </div>
       </div>
 
       <div>
@@ -133,23 +116,13 @@ const currentYear = new Date().getFullYear();
               (786) 332-2922
             </a>
           </li>
-          <li>
-            <EmailIcon
-              class="inline h-5 w-5 text-[rgb(var(--color-text-secondary))] transition-colors duration-200 group-hover:text-[rgb(var(--color-text))]"
-            />
-            <a
-              href="mailto:drrodriguez@test.com"
-              class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
-            >
-              drrodriguez@test.com
-            </a>
-          </li>
+
 
           <li>
             <LocationPin
               class="inline h-5 w-5 text-[rgb(var(--color-text-secondary))] transition-colors duration-200 group-hover:text-[rgb(var(--color-text))]"
             />
-            <a href="#">Miami</a> ·<a href="#">Hialeah</a> · <a href="#"
+            <a href="/#locations">Miami</a> ·<a href="/#locations">Hialeah</a> · <a href="/#locations"
               >Kendall</a
             >
           </li>
@@ -168,20 +141,6 @@ const currentYear = new Date().getFullYear();
         >. All rights reserved.
       </p>
 
-      <div class="flex flex-wrap items-center gap-4">
-        <a
-          href="#"
-          class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
-        >
-          Privacy Policy
-        </a>
-        <a
-          href="#"
-          class="transition-colors duration-200 hover:text-[rgb(var(--color-text))]"
-        >
-          Terms
-        </a>
-      </div>
     </div>
   </div>
 </footer>
