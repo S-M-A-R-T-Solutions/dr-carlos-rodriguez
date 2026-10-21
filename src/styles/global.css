@@ -228,3 +228,5 @@ html[data-theme="dark"] {
         font-size: 0.75rem;
     }
 }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+section[id], div[id="contact"] { scroll-margin-top: 7rem; }

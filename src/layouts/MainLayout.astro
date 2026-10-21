@@ -23,12 +23,33 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href="https://carlosrodriguezmd.com/" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://carlosrodriguezmd.com/" />
+    <meta property="og:image" content="https://carlosrodriguezmd.com/images/dr-carlos-ok.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context":"https://schema.org","@type":"MedicalClinic",
+      "@id":"https://carlosrodriguezmd.com/#clinic",
+      name:"Carlos Rodriguez Ortiz MD, PA",url:"https://carlosrodriguezmd.com/",
+      image:"https://carlosrodriguezmd.com/images/dr-carlos-ok.webp",
+      telephone:"+1-786-332-2922",medicalSpecialty:"Obstetric",availableLanguage:["English","Spanish"],
+      department:[
+        { "@type":"MedicalClinic", name:"Miami office",address:{"@type":"PostalAddress",streetAddress:"3683 S Miami Ave, Suite 400",addressLocality:"Miami",addressRegion:"FL",postalCode:"33133",addressCountry:"US"}},
+        { "@type":"MedicalClinic", name:"Hialeah office",address:{"@type":"PostalAddress",streetAddress:"705 E 26th St",addressLocality:"Hialeah",addressRegion:"FL",postalCode:"33013",addressCountry:"US"}},
+        { "@type":"MedicalClinic", name:"Kendall office",address:{"@type":"PostalAddress",streetAddress:"11760 Bird Rd, Suite 734",addressLocality:"Miami",addressRegion:"FL",postalCode:"33175",addressCountry:"US"}}
+      ]
+    })} />
     <meta name="theme-color" content="#f6f9fa" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Lato:wght@400;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
