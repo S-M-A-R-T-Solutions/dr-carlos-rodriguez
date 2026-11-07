@@ -84,6 +84,27 @@ test('desktop transition closes the mobile menu and transfers focus', async ({ p
   await expect(page.getByRole('navigation', { name: 'Mobile primary' })).toBeHidden();
 });
 
+test('a focused closed toggle moves to visible desktop navigation on resize', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 812 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Navigation menu' }).focus();
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await expect(page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Home', exact: true })).toBeFocused();
+});
+
+test('desktop links and visit CTA transfer focus to the closed mobile toggle', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Contact', exact: true }).focus();
+  await page.setViewportSize({ width: 390, height: 812 });
+  await expect(page.getByRole('button', { name: 'Navigation menu' })).toBeFocused();
+  await expect(page.getByRole('navigation', { name: 'Mobile primary' })).toBeHidden();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.getByRole('link', { name: 'Request Visit', exact: true }).focus();
+  await page.setViewportSize({ width: 390, height: 812 });
+  await expect(page.getByRole('button', { name: 'Navigation menu' })).toBeFocused();
+});
+
 test('native fragment history remains usable after menu navigation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');

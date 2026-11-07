@@ -128,6 +128,7 @@ const isActive = (href: string) => {
 
       <a
         href="/#contact"
+        data-desktop-visit
         class="hidden rounded-full btn-primary px-5 py-3 font-[var(--font-display)] text-sm font-extrabold xl:inline-flex"
       >
         Request Visit
@@ -223,14 +224,20 @@ const isActive = (href: string) => {
 
     const desktop = window.matchMedia("(min-width: 80rem)");
     desktop.addEventListener("change", () => {
-      if (!desktop.matches || !menu.open) return;
       const active = document.activeElement;
       closeMenu();
-      if (active instanceof HTMLElement && menu.contains(active)) {
+      if (!(active instanceof HTMLElement)) return;
+
+      if (desktop.matches && menu.contains(active)) {
         const href = active.getAttribute("href");
         const links = document.querySelectorAll<HTMLAnchorElement>("[data-desktop-navigation] a");
         const destination = Array.from(links).find((link) => link.getAttribute("href") === href) || links[0];
         destination?.focus();
+      } else if (!desktop.matches) {
+        const desktopControls = document.querySelectorAll("[data-desktop-navigation], [data-desktop-visit]");
+        if (Array.from(desktopControls).some((control) => control.contains(active))) {
+          toggle.focus();
+        }
       }
     });
 
