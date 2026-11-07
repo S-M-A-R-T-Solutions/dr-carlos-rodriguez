@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+// Chromium exposes native summary as DisclosureTriangle in its AX tree.
+// Playwright's synthetic button-role query does not include that native role.
 test.beforeEach(async ({ page }) => {
   // Only the local static build is needed. Never load maps/fonts or submit data.
   await page.route('**/*', (route) =>
@@ -13,7 +15,7 @@ for (const width of [320, 390, 768, 1024, 1279]) {
   test(`navigation is reachable and fits a ${width}px viewport`, async ({ page }) => {
     await page.setViewportSize({ width, height: 812 });
     await page.goto('/');
-    const toggle = page.getByRole('button', { name: 'Navigation menu' });
+    const toggle = page.locator('summary[aria-label="Navigation menu"]');
     await expect(toggle).toBeVisible();
     await expect(page.getByRole('navigation', { name: 'Primary', exact: true })).toBeHidden();
     for (const control of [toggle, page.locator('[data-theme-toggle]'), page.locator('header > div > a')]) {
@@ -37,7 +39,7 @@ for (const width of [320, 390, 768, 1024, 1279]) {
 test('keyboard opening, Escape and repeated toggles preserve focus', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
-  const toggle = page.getByRole('button', { name: 'Navigation menu' });
+  const toggle = page.locator('summary[aria-label="Navigation menu"]');
   const nav = page.getByRole('navigation', { name: 'Mobile primary' });
   await toggle.focus();
   await page.keyboard.press('Enter');
@@ -59,7 +61,7 @@ test('every section link closes the disclosure and moves focus to its target', a
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
   for (const [label, id] of [['About', 'about'], ['Services', 'services'], ['Locations', 'locations'], ['Contact', 'contact'], ['Home', 'main-content']]) {
-    await page.getByRole('button', { name: 'Navigation menu' }).click();
+    await page.locator('summary[aria-label="Navigation menu"]').click();
     await page.getByRole('navigation', { name: 'Mobile primary' }).getByRole('link', { name: label, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`#${id}$`));
     await expect(page.locator('[data-mobile-navigation]')).not.toHaveAttribute('open', '');
@@ -72,7 +74,7 @@ test('every section link closes the disclosure and moves focus to its target', a
 test('desktop transition closes the mobile menu and transfers focus', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Navigation menu' }).click();
+  await page.locator('summary[aria-label="Navigation menu"]').click();
   await page.getByRole('navigation', { name: 'Mobile primary' }).getByRole('link', { name: 'Services', exact: true }).focus();
   await page.setViewportSize({ width: 1440, height: 900 });
   const desktop = page.getByRole('navigation', { name: 'Primary', exact: true });
@@ -87,7 +89,7 @@ test('desktop transition closes the mobile menu and transfers focus', async ({ p
 test('a focused closed toggle moves to visible desktop navigation on resize', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Navigation menu' }).focus();
+  await page.locator('summary[aria-label="Navigation menu"]').focus();
   await page.setViewportSize({ width: 1280, height: 900 });
   await expect(page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Home', exact: true })).toBeFocused();
 });
@@ -97,19 +99,21 @@ test('desktop links and visit CTA transfer focus to the closed mobile toggle', a
   await page.goto('/');
   await page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Contact', exact: true }).focus();
   await page.setViewportSize({ width: 390, height: 812 });
-  await expect(page.getByRole('button', { name: 'Navigation menu' })).toBeFocused();
+  await expect(page.locator('summary[aria-label="Navigation menu"]')).toBeFocused();
   await expect(page.getByRole('navigation', { name: 'Mobile primary' })).toBeHidden();
   await page.setViewportSize({ width: 1440, height: 900 });
+  // Wait for the first resize's focus transfer before starting another one.
+  await expect(page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Home', exact: true })).toBeFocused();
   await page.getByRole('link', { name: 'Request Visit', exact: true }).focus();
   await page.setViewportSize({ width: 390, height: 812 });
-  await expect(page.getByRole('button', { name: 'Navigation menu' })).toBeFocused();
+  await expect(page.locator('summary[aria-label="Navigation menu"]')).toBeFocused();
 });
 
 test('native fragment history remains usable after menu navigation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
   for (const label of ['Services', 'Locations']) {
-    await page.getByRole('button', { name: 'Navigation menu' }).click();
+    await page.locator('summary[aria-label="Navigation menu"]').click();
     await page.getByRole('navigation', { name: 'Mobile primary' }).getByRole('link', { name: label, exact: true }).click();
   }
   await page.goBack();
@@ -117,7 +121,7 @@ test('native fragment history remains usable after menu navigation', async ({ pa
   await page.goForward();
   await expect(page).toHaveURL(/#locations$/);
   await expect(page.getByRole('navigation', { name: 'Mobile primary' })).toBeHidden();
-  await page.getByRole('button', { name: 'Navigation menu' }).click();
+  await page.locator('summary[aria-label="Navigation menu"]').click();
   await expect(page.getByRole('navigation', { name: 'Mobile primary' })).toBeVisible();
 });
 
@@ -126,7 +130,7 @@ test('native disclosure and section links work without JavaScript', async ({ bro
   const page = await context.newPage();
   await page.route('**/*', (route) => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
   await page.goto('http://127.0.0.1:4321');
-  await page.getByRole('button', { name: 'Navigation menu' }).click();
+  await page.locator('summary[aria-label="Navigation menu"]').click();
   const nav = page.getByRole('navigation', { name: 'Mobile primary' });
   await expect(nav).toBeVisible();
   await nav.getByRole('link', { name: 'Contact', exact: true }).click();
