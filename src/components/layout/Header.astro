@@ -21,19 +21,19 @@ const isActive = (href: string) => {
   <div class="container-shell flex items-center justify-between gap-4 py-4">
     <a
       href="/"
-      class="group inline-flex shrink-0 items-center gap-3"
+      class="group inline-flex min-w-0 items-center gap-2 sm:gap-3"
       aria-label="Carlos Rodriguez Ortiz MD, PA home"
     >
-      <img src="/images/logo-dr.webp" alt="Carlos Rodriguez Ortiz MD, PA logo" class="h-13 w-13" />
+      <img src="/images/logo-dr.webp" alt="Carlos Rodriguez Ortiz MD, PA logo" class="h-10 w-10 shrink-0 sm:h-13 sm:w-13" />
 
-      <span class="flex flex-col leading-none">
+      <span class="min-w-0 flex flex-col leading-tight">
         <span
-          class="font-[var(--font-display)] text-lg font-extrabold tracking-tight text-[rgb(var(--color-text))]"
+          class="font-[var(--font-display)] text-sm font-extrabold tracking-tight sm:text-lg text-[rgb(var(--color-text))]"
         >
           Carlos Rodriguez Ortiz MD, PA
         </span>
         <span
-          class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-[rgb(var(--color-text-secondary))]"
+          class="hidden sm:block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-[rgb(var(--color-text-secondary))]"
         >
           Obstetrics & Gynecology
         </span>
@@ -41,7 +41,9 @@ const isActive = (href: string) => {
     </a>
 
     <nav
-      class="hidden items-center gap-1 rounded-full border border-black/8 bg-[rgb(var(--color-surface))] px-2 py-2 shadow-soft lg:flex dark:border-white/10 dark:bg-white/5 dark:shadow-none"
+      aria-label="Primary"
+      data-desktop-navigation
+      class="hidden items-center gap-1 rounded-full border border-black/8 bg-[rgb(var(--color-surface))] px-2 py-2 shadow-soft xl:flex dark:border-white/10 dark:bg-white/5 dark:shadow-none"
     >
       {
         navLinks.map((link) => {
@@ -65,7 +67,7 @@ const isActive = (href: string) => {
       }
     </nav>
 
-    <div class="flex items-center gap-2 sm:gap-3">
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
       <button
         type="button"
         class="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft transition hover:-translate-y-0.5 hover:border-black/15 hover:bg-[rgb(var(--color-surface-soft))] dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
@@ -100,9 +102,34 @@ const isActive = (href: string) => {
         </svg>
       </button>
 
+      <details data-mobile-navigation class="xl:hidden">
+        <summary
+          class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-black/10 bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] shadow-soft [&::-webkit-details-marker]:hidden dark:border-white/10 dark:bg-white/5"
+          aria-label="Navigation menu"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </summary>
+        <nav
+          aria-label="Mobile primary"
+          class="absolute inset-x-4 top-full mt-2 max-h-[calc(100dvh-8rem)] overflow-y-auto rounded-2xl border border-black/10 bg-[rgb(var(--color-surface))] p-2 shadow-card dark:border-white/10"
+        >
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="block rounded-xl px-4 py-3 font-[var(--font-display)] font-bold text-[rgb(var(--color-text))] hover:bg-[rgb(var(--color-surface-soft))]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </details>
+
       <a
         href="/#contact"
-        class="hidden rounded-full btn-primary px-5 py-3 font-[var(--font-display)] text-sm font-extrabold lg:inline-flex"
+        data-desktop-visit
+        class="hidden rounded-full btn-primary px-5 py-3 font-[var(--font-display)] text-sm font-extrabold xl:inline-flex"
       >
         Request Visit
       </a>
@@ -158,4 +185,84 @@ const isActive = (href: string) => {
       syncThemeButton();
     });
   })();
+</script>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>("[data-mobile-navigation]");
+  const toggle = menu?.querySelector("summary");
+
+  if (menu && toggle) {
+    const closeMenu = () => {
+      menu.open = false;
+    };
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.open) {
+        event.preventDefault();
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    menu.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        const target = document.getElementById(new URL(link.href).hash.slice(1));
+        if (!target) return;
+
+        // Keep native fragment navigation/history, but do not leave keyboard
+        // focus on a link that is about to become hidden.
+        const hadTabindex = target.hasAttribute("tabindex");
+        if (!hadTabindex) {
+          target.setAttribute("tabindex", "-1");
+          target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+        }
+        closeMenu();
+        target.focus({ preventScroll: true });
+      });
+    });
+
+    const desktop = window.matchMedia("(min-width: 80rem)");
+    const transferNavigationFocus = (active: EventTarget | null) => {
+      if (!(active instanceof HTMLElement)) return;
+
+      if (desktop.matches && menu.contains(active)) {
+        const href = active.getAttribute("href");
+        const links = document.querySelectorAll<HTMLAnchorElement>("[data-desktop-navigation] a");
+        const destination = Array.from(links).find((link) => link.getAttribute("href") === href) || links[0];
+        destination?.focus();
+      } else if (!desktop.matches) {
+        const desktopControls = document.querySelectorAll("[data-desktop-navigation], [data-desktop-visit]");
+        if (Array.from(desktopControls).some((control) => control.contains(active))) {
+          toggle.focus();
+        }
+      }
+    };
+
+    desktop.addEventListener("change", () => {
+      const active = document.activeElement;
+      closeMenu();
+      transferNavigationFocus(active);
+    });
+
+    // Chromium can blur a control as soon as responsive CSS hides it,
+    // before matchMedia fires. Use the blur target while it is still known.
+    document.addEventListener("focusout", (event) => {
+      if (
+        event.relatedTarget === null &&
+        event.target instanceof HTMLElement &&
+        event.target.getClientRects().length === 0
+      ) {
+        transferNavigationFocus(event.target);
+      }
+    });
+
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted && menu.open) {
+        const hadFocus = menu.contains(document.activeElement);
+        closeMenu();
+        if (hadFocus) toggle.focus();
+      }
+    });
+  }
 </script>
