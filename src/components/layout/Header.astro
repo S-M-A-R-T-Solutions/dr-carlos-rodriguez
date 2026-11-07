@@ -223,9 +223,7 @@ const isActive = (href: string) => {
     });
 
     const desktop = window.matchMedia("(min-width: 80rem)");
-    desktop.addEventListener("change", () => {
-      const active = document.activeElement;
-      closeMenu();
+    const transferNavigationFocus = (active: EventTarget | null) => {
       if (!(active instanceof HTMLElement)) return;
 
       if (desktop.matches && menu.contains(active)) {
@@ -238,6 +236,24 @@ const isActive = (href: string) => {
         if (Array.from(desktopControls).some((control) => control.contains(active))) {
           toggle.focus();
         }
+      }
+    };
+
+    desktop.addEventListener("change", () => {
+      const active = document.activeElement;
+      closeMenu();
+      transferNavigationFocus(active);
+    });
+
+    // Chromium can blur a control as soon as responsive CSS hides it,
+    // before matchMedia fires. Use the blur target while it is still known.
+    document.addEventListener("focusout", (event) => {
+      if (
+        event.relatedTarget === null &&
+        event.target instanceof HTMLElement &&
+        event.target.getClientRects().length === 0
+      ) {
+        transferNavigationFocus(event.target);
       }
     });
 

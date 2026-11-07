@@ -109,6 +109,21 @@ test('desktop links and visit CTA transfer focus to the closed mobile toggle', a
   await expect(page.locator('summary[aria-label="Navigation menu"]')).toBeFocused();
 });
 
+test('repeated breakpoint changes keep focus on a visible navigation control', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 812 });
+  await page.goto('/');
+  const toggle = page.locator('summary[aria-label="Navigation menu"]');
+  const desktop = page.getByRole('navigation', { name: 'Primary', exact: true });
+  await toggle.focus();
+  for (let iteration = 0; iteration < 8; iteration++) {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(desktop.getByRole('link', { name: 'Home', exact: true })).toBeFocused();
+    await desktop.getByRole('link', { name: 'Services', exact: true }).focus();
+    await page.setViewportSize({ width: 390, height: 812 });
+    await expect(toggle).toBeFocused();
+  }
+});
+
 test('native fragment history remains usable after menu navigation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 812 });
   await page.goto('/');
